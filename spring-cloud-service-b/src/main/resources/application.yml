@@ -13,3 +13,9 @@ eureka:
   instance:
     prefer-ip-address: true
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
+
+ribbon:
+  #建立连接超时时间
+  ReadTimeout: 5000
+  #读取资源超时间
+  ConnectTimeout: 5000
