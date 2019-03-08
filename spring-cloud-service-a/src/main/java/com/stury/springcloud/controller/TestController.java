@@ -45,11 +45,6 @@ public class TestController {
     @HystrixCommand(fallbackMethod = "fallback")
     @RequestMapping("/hello")
     public String hello() {
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         return "hello world 端口：" + port;
     }
 

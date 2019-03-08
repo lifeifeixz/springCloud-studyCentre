@@ -24,6 +24,7 @@
  */
 package com.study.springcloud.controller;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.study.springcloud.service.ServiceAFeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,9 +42,14 @@ public class TestController {
     @Autowired
     private ServiceAFeignClient serviceAFeignClient;
 
+    @HystrixCommand(fallbackMethod = "fallback")
     @RequestMapping("/call")
     public String call() {
         String result = serviceAFeignClient.hello();
         return "b to a 访问结果 ----- " + result;
+    }
+
+    String fallback() {
+        return "服务挂了";
     }
 }
